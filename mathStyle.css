@@ -159,6 +159,7 @@ padding: 10px;
   margin-right: 5px;
   padding: 0px;
   -webkit-appearance: none !important;
+  touch-action: manipulation;
   
 }
 
@@ -174,6 +175,7 @@ padding: 10px;
   margin-bottom: 7px;
   margin-right: 5px;
  -webkit-appearance: none !important;
+ touch-action: manipulation;
 }
 
 
