@@ -53,12 +53,12 @@
 
       if(testType=="plus" || testType=="minus" || testType=="plusminus") {
         for(let idx=0; idx<200; idx++) {
-          first.push(getRandomInt(10,20));
-          second.push(getRandomInt(2,9));
+          first.push(getRandomInt(8,18));
+          second.push(getRandomInt(2,8));
         }
       } else if(testType=="multi") {
         for(let idx=0; idx<200; idx++) {
-          first.push(getRandomInt(7,12));
+          first.push(getRandomInt(5,12));
           second.push(getRandomInt(2,9));
         }
       }
