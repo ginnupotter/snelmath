@@ -14,42 +14,25 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.0/html2canvas.min.js"></script>
   <script>
-/*       $(document).ready(function(){
-      $(".wordlechars").keyup(function(e) {
-          if (e.which == 8 || e.which == 46) {
-            $(this).prev('input').focus();
-            // $(this).val('');
-        }
-        else if (e.which == 9){
-            
-        } else if (e.which > 64 || e.which < 91) {
-          $(this).next('input').focus();     
-        }
-        });
-
-      }); */
-
-   
-
     $(document).on("keyup", function (e) {
         let enteredValue = document.getElementById("result").value;
         var keyValue = String.fromCharCode(e.which);
-        // if (e.which == 8) {
-        //   if (enteredValue.length == 0) {
-        //     return;
-        //   } else {
-        //     document.getElementById("result").value = "";
-        //     return;
-        //   }
-        // } else if (e.which >= 48 && e.which <= 57) {
-        //   if (enteredValue.length == 0) {
-        //   document.getElementById("result").value = keyValue;
-        //   return;
-        //   } else {
-        //     document.getElementById("result").value = enteredValue+keyValue;
-        //     return;
-        //   }
-        //  } else 
+         if (e.which == 8) {
+           if (enteredValue.length == 0) {
+             return;
+           } else {
+             document.getElementById("result").value = "";
+             return;
+           }
+         } else if (e.which >= 48 && e.which <= 57) {
+           if (enteredValue.length == 0) {
+           document.getElementById("result").value = keyValue;
+           return;
+           } else {
+             document.getElementById("result").value = enteredValue+keyValue;
+             return;
+           }
+          } else 
         if (e.which == 13) {
           checkAnswer();
         }
@@ -68,29 +51,37 @@
     <div class="choice" id="chooseTest">
       <table>
         <tr>
+          <td style="text-align: center; font-size: large;"><input type="radio" id="30" name="duration" value="30000"><br><label for="30">30 Secs</label></td>
+          <td style="text-align: center; font-size: large;"><input type="radio" id="60" name="duration" value="60000" checked="checked"><br><label for="60">60 Secs</label></td>  
+          <td style="text-align: center; font-size: large;"><input type="radio" id="120" name="duration" value="120000"><br><label for="120">120 Secs</label></td>
+        </tr>
+        <tr>
+          <td colspan="3"><br></td>
+        </tr>
+        <tr>
           <td><input id="plus" type="image" class="choiceImg" src="./img/plus.png" onclick="testSetup(this.id)"></td>
           <td><input id="minus" type="image" class="choiceImg" src="./img/minus.png" onclick="testSetup(this.id)"></td>
-          <td><input id="plusminus" type="image" class="choiceImg" src="./img/plusminus.png" onclick="testSetup(this.id)"></td>
+          <td><input id="plusminus" type="image" class="choiceImg" src="./img/plusminus.png" onclick=""></td>
         </tr>
         <tr>
           <td><input id="multi" type="image" class="choiceImg" src="./img/multi.png" onclick="testSetup(this.id)"></td>
-          <td><input id="divide" type="image" class="choiceImg" src="./img/divide.png" onclick="testSetup(this.id)"></td>
-          <td><input id="multidiv" type="image" class="choiceImg" src="./img/multidiv.png" onclick="testSetup(this.id)"></td>
+          <td><input id="divide" type="image" class="choiceImg" src="./img/divide.png" onclick=""></td>
+          <td><input id="multidiv" type="image" class="choiceImg" src="./img/multidiv.png" onclick=""></td>
         </tr>
         <tr>
-          <td colspan="3"><input id="mix" type="image" class="choiceImgSpcl" src="./img/mix.png" onclick="testSetup(this.id)"></td>
+          <td colspan="3"><input id="mix" type="image" class="choiceImgSpcl" src="./img/mix.png" onclick=""></td>
         </tr>
 
       </table>
-
     </div>
     
     <div id="testBoxes" style="visibility: hidden; align-items: center;">
     <input type="text" id="first" name="row0" maxlength="2" class="testBox"> <input type="text" id="sign" name="row0" maxlength="1" class="testBox">  <input type="text" id="second" name="row0" maxlength="2" class="testBox"> &emsp; = &emsp; <input type="text" id="result" name="row0" maxlength="3" class="testBoxR"> 
     <br><br>
     </div>
-    
-    <input type="button" id="buttonPress" value="Start" style="height:35px; width:200px; font-size: 25px; visibility: hidden; margin-left: 35px;"  onclick="onSubmit()">
+    <p id=endMsg></p>
+    <br>
+    <input type="button" id="buttonPress" value="Start" style="height:35px; width:200px; font-size: 25px; visibility: hidden; margin:auto "  onclick="onSubmit()">
    
     <div id="snackbar"></div>
     <br>
@@ -112,22 +103,7 @@
     <input type="button" id="clear" class="specialKeys" value="CLEAR" onclick="onKeyboardClick(this.id)">
     <br>
   </div>
-  <div class="pop">
-    <label for="3" class="open" id="howTo">How To Play</label>
-    <input type="checkbox" id="3" />
-    <div class="modal">
-      <div class="modal__inner">
-          <p><b>Make a train of Words</b></p>
-          <p>After pressing Start button you have <u>20 seconds to make as many 5 letter words as you can</u></p>
-          <p>Only condition being that <u>each word should start from the last letter of previous word</u></p>
-          <p>The first letter will be randomly provided by the application</p>
-          <p>It will be same for each day so that you <u>don't spend too much time playing this ;)</u></p>
-          <label class="btn-close" for="3">X</label>
-      </div>
-    </div>
-    
-</div>
-</div>
+*</div>
 
 
 </body>

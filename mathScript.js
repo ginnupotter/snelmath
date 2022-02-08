@@ -13,17 +13,15 @@
     
      var testType; // Global variable to set the word for the day, accessible throughout the script
      var counter = 0;
-     var matched = 0;
      var first = [];
      var second = [];
      var result = [];
      var initialCount = 1;
-     var greenChars = [];
-     var yellowChars = [];
      var score = 0;
      var shortMsg = 1000;
      var medMsg = 2000;
      var longMsg = 6000;
+     var testDuration;
      var operators = {
       "plus" : function(a, b) { return a + b },
       "minus" : function(a, b) { return a - b },
@@ -42,20 +40,31 @@
 
       testType = testId;
 
+      var radioButton = document.getElementsByName('duration');
+
+       for (var i = 0, length = radioButton.length; i < length; i++) {
+         if (radioButton[i].checked) {
+           // do whatever you want with the checked radio
+           testDuration = radioButton[i].value;
+           break;
+         }
+       }
+
+
       if(testType=="plus" || testType=="minus" || testType=="plusminus") {
-        for(let idx=0; idx<40; idx++) {
+        for(let idx=0; idx<200; idx++) {
           first.push(getRandomInt(10,20));
           second.push(getRandomInt(2,9));
         }
-      } else if(testType=="multi" || testType=="divide" || testType=="multidiv" ) {
-        for(let idx=0; idx<40; idx++) {
+      } else if(testType=="multi") {
+        for(let idx=0; idx<200; idx++) {
           first.push(getRandomInt(7,12));
           second.push(getRandomInt(2,9));
         }
       }
 
       if(testType=="plus" || testType=="minus" || testType=="multi" || testType=="divide") {
-        for(let idx=0; idx < 40; idx++) {
+        for(let idx=0; idx < 200; idx++) {
           result[idx]=operators[testType](first[idx],second[idx]);
          // alert(first[idx]+" "+testType+" "+second[idx]+"="+result[idx] );
         }
@@ -79,23 +88,7 @@
     
     
     //Function to clear the grid for taking a screenshot for sharing.
-    function clearGrid() {
-      for (let index = 0; index < 6; index++) {
-        document.getElementsByName("row" + index).forEach(e => {
-        e.value = "";
-        });
-
-      }
-      document.getElementById("buttonPress").style.visibility = "hidden";
-      document.getElementById("dateDiv").className = "linkVisible";
-      document.getElementById("howTo").style.visibility = "hidden";
-      document.getElementById("disclaimer").style.visibility = "hidden";
-      document.getElementById("keyboard").style.visibility = "hidden";
-      document.getElementById("heading").remove();
-      
-      return;
-    }
-
+   
     function onKeyboardClick(keyId) {
       
       let enteredVal = document.getElementById("result").value;
@@ -128,16 +121,18 @@
     {
       document.getElementById("result").disabled = "true";
       document.getElementById("testBoxes").remove();
-      showMessage("Times Up. You Scored: "+score+" Points",longMsg);
+      showMessage("Times Up",medMsg);
       document.getElementById("buttonPress").value = "Try Again";
       document.getElementById("buttonPress").style.visibility = "visible";
       debugger;
       document.getElementById("keyboard").remove();
-      counter = 100;
+      document.getElementById("endMsg").className = "textClass";
+      document.getElementById("endMsg").innerHTML = "In "+testDuration/1000+" seconds, you got "+score+" correct out of "+counter++ +" questions";
+      counter = 1000;
     }
 
     function checkAnswer() {
-      if(counter==100) {
+      if(counter==1000) {
         return;
       }
       var answer = document.getElementById("result").value;
@@ -148,7 +143,7 @@
         document.getElementById("result").className = "testBoxRed";
       }
 
-      setTimeout(function () { document.getElementById("result").className = "testBox" ; }, 100);
+      setTimeout(function () { document.getElementById("result").className = "testBoxR" ; }, 100);
       counter++;
       onSubmit();
     }
@@ -163,9 +158,10 @@
       document.getElementById("first").disabled = "true";
       document.getElementById("sign").disabled = "true";
       document.getElementById("second").disabled = "true";
-      document.getElementById("result").focus();
-      setTimeout(timesUp, 10000);
-      } else if(counter ==100) {
+      document.getElementById("result").disabled = "true";
+     // document.getElementById("result").focus();
+      setTimeout(timesUp, testDuration);
+      } else if(counter ==1000) {
         window.location.reload(true);
       }
       document.getElementById("result").value = "";
@@ -185,7 +181,7 @@
           document.getElementById("sign").value = ":";
           break;
       }
-      document.getElementById("result").focus();
+   //   document.getElementById("result").focus();
 
     }
     
@@ -198,76 +194,3 @@
       x.className = "show";
       setTimeout(function () { x.className = x.className.replace("show", ""); }, duration);
     }
-
-
-
-
-
-function checkValidity(enteredWord) {
-    
-     
-    if(fullWordList1.includes(enteredWord)){
-        return 1;
-    } else if(fullWordList2.includes(enteredWord)) {
-        return 1;
-    } else if(fullWordList3.includes(enteredWord)) {
-        return 1;
-    } else {
-        return 0;
-    }
-
-  }
-
-  /* function checkValidity(enteredString) {
-      var baseURL = "https://api.dictionaryapi.dev/api/v2/entries/en/";
-      debugger;
-      alert(baseURL+enteredString);
-      const userAction = async () => {
-      const response = await fetch(baseURL+enteredString);
-      const myJson = await response.json(); //extract JSON from the http response
-      
-      alert(myJson);
-
-      return 0;
-
-
-      }
-    }
-
-    function checkWord(enteredString) {
-      debugger;
-      var URL = "https://api.dictionaryapi.dev/api/v2/entries/en/"+enteredString;
-
-      var   responseTxt = '';
-
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          responseTxt = JSON.parse(this.responseText);
-          alert(responseTxt.toString());
-        }
-      };
-      xhttp.open("GET", URL, true);
-      xhttp.send();
-
-      return responseTxt;
-    }
-
-
-    async function fetchText(enteredString) {
-    debugger;
-    var URL = "https://api.dictionaryapi.dev/api/v2/entries/en/"+enteredString;
-    let response = await fetch(URL);
-
-    console.log(response.status); // 200
-    console.log(response.statusText); // OK
-
-    if (response.status === 200) {
-        let data = await response.text();
-        alert(data);
-    }
-
-    return 0;
-    } */
-
-
