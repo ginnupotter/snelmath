@@ -5,6 +5,7 @@ html, body {
 html {
     display: table;
     margin: auto;
+    touch-action: manipulation;
 }
 
 body {
