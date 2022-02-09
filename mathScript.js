@@ -142,8 +142,10 @@
       document.getElementById("buttonPress").style.visibility = "visible";
       debugger;
       document.getElementById("keyboard").remove();
+
       document.getElementById("endMsg").className = "textClass";
       document.getElementById("endMsg").innerHTML = "In "+testDuration/1000+" seconds, you got "+score+" correct out of "+counter++ +" questions";
+      document.getElementById("endMsg").style.visibility = "visible";
       counter = 1000;
     }
 
