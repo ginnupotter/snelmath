@@ -15,6 +15,7 @@
      var counter = 0;
      var first = [];
      var second = [];
+     var sign = [];
      var result = [];
      var initialCount = 1;
      var score = 0;
@@ -51,25 +52,40 @@
        }
 
 
-      if(testType=="plus" || testType=="minus" || testType=="plusminus") {
+      if(testType=="plus" || testType=="minus") {
         for(let idx=0; idx<200; idx++) {
           first.push(getRandomInt(8,18));
           second.push(getRandomInt(2,8));
-        }
+          sign.push(testType);
+      }
       } else if(testType=="multi") {
         for(let idx=0; idx<200; idx++) {
           first.push(getRandomInt(5,12));
           second.push(getRandomInt(2,9));
+          sign.push(testType);
         }
+      } else if (testType=="plusminus") {
+        for(let idx=0; idx<200; idx++) {
+          first.push(getRandomInt(8,18));
+          second.push(getRandomInt(2,8));
+          if(getRandomInt(0,1)==0) {
+            sign.push("plus");
+          } else {
+            sign.push("minus");
+          }
       }
+     
+    }
 
-      if(testType=="plus" || testType=="minus" || testType=="multi" || testType=="divide") {
+      if(testType=="plus" || testType=="minus" || testType=="multi" || testType=="plusminus") {
         for(let idx=0; idx < 200; idx++) {
-          result[idx]=operators[testType](first[idx],second[idx]);
+          result[idx]=operators[sign[idx]](first[idx],second[idx]);
          // alert(first[idx]+" "+testType+" "+second[idx]+"="+result[idx] );
         }
 
         document.getElementById("chooseTest").remove();
+        document.getElementById("testDur").remove();
+        document.getElementById("endMsg").style.visibility = "hidden";
         document.getElementById("buttonPress").style.visibility="visible";
 
       }
@@ -167,7 +183,7 @@
       document.getElementById("result").value = "";
       document.getElementById("first").value = first[counter];
       document.getElementById("second").value = second[counter];
-      switch (testType) {
+      switch (sign[counter]) {
         case 'plus':
           document.getElementById("sign").value = "+";
           break;

@@ -48,29 +48,31 @@
     <h4 id="heading" class="center" >SNEL MATH</h4>
     <br>
     
+    <table id="testDur">
+      <tr>
+        <td style="text-align: center; font-size: large; border: 1px solid black; border-radius: 5px; padding:5px;"><input type="radio" id="30" name="duration" value="30000"><br><label for="30">30 Secs</label></td>
+        <td style="text-align: center; font-size: large; border: 1px solid black; border-radius: 5px; padding:5px;"><input type="radio" id="60" name="duration" value="60000" checked="checked"><br><label for="60">60 Secs</label></td>  
+        <td style="text-align: center; font-size: large; border: 1px solid black; border-radius: 5px; padding:5px;"><input type="radio" id="120" name="duration" value="120000"><br><label for="120">120 Secs</label></td>
+      </tr>
+      </table>
     <div class="choice" id="chooseTest">
       <table>
         <tr>
-          <td style="text-align: center; font-size: large;"><input type="radio" id="30" name="duration" value="30000"><br><label for="30">30 Secs</label></td>
-          <td style="text-align: center; font-size: large;"><input type="radio" id="60" name="duration" value="60000" checked="checked"><br><label for="60">60 Secs</label></td>  
-          <td style="text-align: center; font-size: large;"><input type="radio" id="120" name="duration" value="120000"><br><label for="120">120 Secs</label></td>
-        </tr>
-        <tr>
-          <td colspan="3"><br></td>
+          <td colspan="2"><br></td>
         </tr>
         <tr>
           <td><input id="plus" type="image" class="choiceImg" src="./img/plus.png" onclick="testSetup(this.id)"></td>
           <td><input id="minus" type="image" class="choiceImg" src="./img/minus.png" onclick="testSetup(this.id)"></td>
-          <td><input id="plusminus" type="image" class="choiceImg" src="./img/plusminus.png" onclick=""></td>
         </tr>
         <tr>
+          <td><input id="plusminus" type="image" class="choiceImg" src="./img/plusminus.png" onclick="testSetup(this.id)"></td>
           <td><input id="multi" type="image" class="choiceImg" src="./img/multi.png" onclick="testSetup(this.id)"></td>
-          <td><input id="divide" type="image" class="choiceImg" src="./img/divide.png" onclick=""></td>
-          <td><input id="multidiv" type="image" class="choiceImg" src="./img/multidiv.png" onclick=""></td>
+          <!-- <td><input id="divide" type="image" class="choiceImg" src="./img/divide.png" onclick=""></td>
+          <td><input id="multidiv" type="image" class="choiceImg" src="./img/multidiv.png" onclick=""></td> -->
         </tr>
-        <tr>
+     <!--    <tr>
           <td colspan="3"><input id="mix" type="image" class="choiceImgSpcl" src="./img/mix.png" onclick=""></td>
-        </tr>
+        </tr> -->
 
       </table>
     </div>
@@ -79,31 +81,39 @@
     <input type="text" id="first" name="row0" maxlength="2" class="testBox"> <input type="text" id="sign" name="row0" maxlength="1" class="testBox">  <input type="text" id="second" name="row0" maxlength="2" class="testBox"> &emsp; = &emsp; <input type="text" id="result" name="row0" maxlength="3" class="testBoxR"> 
     <br><br>
     </div>
-    <p id=endMsg></p>
+    <p id=endMsg>Pick the duration and type of test you want to take</p>
     <br>
     <input type="button" id="buttonPress" value="Start" style="height:35px; width:200px; font-size: 25px; visibility: hidden; margin:auto "  onclick="onSubmit()">
    
     <div id="snackbar"></div>
     <br>
     <div id="keyboard" style="visibility: hidden;">
-    <input type="button" id="1" class="nothing" value="1" onclick="onKeyboardClick(this.id)">
-    <input type="button" id="2" class="nothing" value="2" onclick="onKeyboardClick(this.id)">
-    <input type="button" id="3" class="nothing" value="3" onclick="onKeyboardClick(this.id)">
-    <br>
-    <input type="button" id="4" class="nothing" value="4" onclick="onKeyboardClick(this.id)">
-    <input type="button" id="5" class="nothing" value="5" onclick="onKeyboardClick(this.id)">
-    <input type="button" id="6" class="nothing" value="6" onclick="onKeyboardClick(this.id)">
-    <br>
-    <input type="button" id="7" class="nothing" value="7" onclick="onKeyboardClick(this.id)">
-    <input type="button" id="8" class="nothing" value="8" onclick="onKeyboardClick(this.id)">
-    <input type="button" id="9" class="nothing" value="9" onclick="onKeyboardClick(this.id)">
-    <br>
-    <input type="button" id="enter" class="specialKeys" value="ENTER" onclick="checkAnswer()">
-    <input type="button" id="0" class="nothing" value="0" onclick="onKeyboardClick(this.id)">
-    <input type="button" id="clear" class="specialKeys" value="CLEAR" onclick="onKeyboardClick(this.id)">
-    <br>
+      <table>
+        <tr>
+          <td colspan="2"><input type="button" id="1" class="nothing" value="1" onclick="onKeyboardClick(this.id)"></td>
+          <td colspan="2"><input type="button" id="2" class="nothing" value="2" onclick="onKeyboardClick(this.id)"></td>
+          <td colspan="2"><input type="button" id="3" class="nothing" value="3" onclick="onKeyboardClick(this.id)"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="button" id="4" class="nothing" value="4" onclick="onKeyboardClick(this.id)"></td>
+          <td colspan="2"><input type="button" id="5" class="nothing" value="5" onclick="onKeyboardClick(this.id)"></td>
+          <td colspan="2"><input type="button" id="6" class="nothing" value="6" onclick="onKeyboardClick(this.id)"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="button" id="7" class="nothing" value="7" onclick="onKeyboardClick(this.id)"></td>
+          <td colspan="2"><input type="button" id="8" class="nothing" value="8" onclick="onKeyboardClick(this.id)"></td>
+          <td colspan="2"><input type="button" id="9" class="nothing" value="9" onclick="onKeyboardClick(this.id)"></td>
+        </tr>
+        <tr>
+          <td colspan="6" style="text-align:center;"><input type="button" id="0" class="nothing" value="0" onclick="onKeyboardClick(this.id)"></td>
+        </tr>
+        <tr>
+          <td colspan="3"><input type="button" id="enter" class="specialKeys" value="ENTER" onclick="checkAnswer()"></td>
+          <td colspan="3"><input type="button" id="clear" class="specialKeys" value="CLEAR" onclick="onKeyboardClick(this.id)"></td>
+        </tr>
+      </table>
   </div>
-*</div>
+</div>
 
 
 </body>
