@@ -85,8 +85,8 @@
 
         document.getElementById("chooseTest").remove();
         document.getElementById("testDur").remove();
-        document.getElementById("endMsg").style.visibility = "hidden";
-        document.getElementById("buttonPress").style.visibility="visible";
+        document.getElementById("startMsg").remove();
+        document.getElementById("buttonPress1").style.visibility="visible";
 
       }
 
@@ -138,8 +138,8 @@
       document.getElementById("result").disabled = "true";
       document.getElementById("testBoxes").remove();
       showMessage("Times Up",medMsg);
-      document.getElementById("buttonPress").value = "Try Again";
-      document.getElementById("buttonPress").style.visibility = "visible";
+      //document.getElementById("buttonPress").value = "Try Again";
+      document.getElementById("buttonPress2").style.visibility = "visible";
       debugger;
       document.getElementById("keyboard").remove();
 
@@ -170,7 +170,7 @@
     function onSubmit() {
       debugger;
       if(counter==0){
-      document.getElementById("buttonPress").style.visibility = "hidden";
+      document.getElementById("buttonPress1").style.visibility = "hidden";
       document.getElementById("testBoxes").style.visibility = "visible";
       document.getElementById("keyboard").style.visibility = "visible";
       document.getElementById("first").disabled = "true";
